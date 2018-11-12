@@ -13,12 +13,15 @@ const Label = styled.label`
 
 const Button = styled.button`
   background: #f4989c;
-  border: 1px solid black;
-  border-radius: 3px;
+  border: 2px solid black;
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  border-radius: 45px;
   color: white;
-  font-size: 0.75em;
+  font-size: 1em;
   margin: 1em;
   padding: 0.25em;
+  width: 5em;
 `;
 
 const SearchForm = () => (
