@@ -6,7 +6,7 @@ import SearchForm from './form/form';
 
 const App = () => (
   <div>
-    <Title text="Job Smack" />
+    <Title />
     <SearchForm />
   </div>
 );

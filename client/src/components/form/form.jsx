@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
-const Title = styled.h3`
+const Title = styled.h4`
   margin: 1em 0;
   text-align: center;
 `;
 
 const Label = styled.label`
-  margin: 0.25em;
+  margin: 0.25em 0.5em;
 `;
 
 const Button = styled.button`
-  background: #2bbbad;
+  background: #f4989c;
   border: 1px solid black;
   border-radius: 3px;
   color: white;
@@ -38,17 +38,21 @@ const SearchForm = () => (
       }}
       render={() => (
         <Form>
-          <Label> Enter Job Keywords: </Label>
+          <Label> Job Description </Label>
           <Field
             name="keywords"
             type="text"
-            placeholder="Python, Java, etc"
+            placeholder="Python, Java, Amazon"
           />
           <br />
-          <Label> Enter Location: </Label>
-          <Field name="location" type="text" placeholder="New York" />
+          <Label> Location </Label>
+          <Field
+            name="location"
+            type="text"
+            placeholder="New York, 11211"
+          />
           <br />
-          <Label> Email: </Label>
+          <Label> Email </Label>
           <Field
             name="email"
             type="email"

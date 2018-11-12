@@ -6,6 +6,6 @@ const TitleStyle = styled.h1`
   text-align: center;
 `;
 
-const Title = ({ text }) => <TitleStyle> {text} </TitleStyle>;
+const Title = () => <TitleStyle> Find </TitleStyle>;
 
 export default Title;
