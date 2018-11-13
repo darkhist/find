@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Sample from './sample/sample';
+import Title from './title/title';
+import SearchForm from './form/form';
 
 const App = () => (
   <div>
-    <Sample />
+    <Title />
+    <SearchForm />
   </div>
 );
 
