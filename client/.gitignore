@@ -1,12 +1,13 @@
 # dependencies
 node_modules
 
-# build files 
+# build files
 dist
 .cache
 
 # lockfiles
 package-lock.json
+yarn.lock
 
 # logs
 yarn-error.log

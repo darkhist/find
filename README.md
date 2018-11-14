@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project was built with: 
+This project was built with:
 
 * [React](https://reactjs.org/)
 * [Parcel](https://parceljs.org/)
@@ -21,7 +21,7 @@ Add Installation Instructions for Dependencies Herey
 
 ## Testing
 
-Add Testing Info Here – If Necessary 
+Add Testing Info Here – If Necessary
 
 ## Deployment
 
@@ -32,7 +32,7 @@ Add Deployment Instructions Here
 Joseph Ward  
 Tyler Moul  
 Trace Ohrt  
-Cole Goode  
+Colton Goode  
 Quinn Salas  
 
 ## License
