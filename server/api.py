@@ -20,12 +20,13 @@ def example_json():
     return json.dumps(data)
 
 
-# Untested
+# Just returns data from example.data (Based off the GitHub Jobs Example)
 @app.route('/exampledata')
 def example_data():
     return ex.get_exampledata()
 
 
+# This route has yet to be completed
 @app.route('/searchJobs/<params>', methods=['GET', 'POST'])
 def search_jobs(params):
     """
