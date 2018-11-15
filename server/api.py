@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 import json
 import requests
+import sys
 
 import example_data as ex
 
@@ -16,8 +17,13 @@ def example_json():
     r = requests.get(url=URL)
     data = r.json()
 
+    ret = {}
+
+    for job in data:
+        ret[job["id"]] = {"title": job["title"], "location": job["location"], "company": job["company"]}
+
     # I dont know if we want to sort this here some more or let the frontend handle it
-    return json.dumps(data)
+    return json.dumps(ret)
 
 
 # Just returns data from example.data (Based off the GitHub Jobs Example)
@@ -27,8 +33,8 @@ def example_data():
 
 
 # This route has yet to be completed
-@app.route('/searchJobs/<params>', methods=['GET', 'POST'])
-def search_jobs(params):
+@app.route('/searchJobs', methods=['GET', 'POST'])
+def search_jobs():
     """
     Takes in a json. Example:
     {
@@ -38,6 +44,8 @@ def search_jobs(params):
     "full-time":true
     }
     """
+    ID = request.args.get('id')
+    print(ID, file=sys.stderr)
 
     # TODO: Build a URL to make a request with GitHub Jobs
     URL = "https://jobs.github.com/positions.json?"  # Base
@@ -52,7 +60,7 @@ def search_jobs(params):
     data = r.json()
 
     # I dont know if we want to sort this here some more or let the frontend handle it
-    return json.dumps(data)
+    return "<p> Hi <p>"
 
 
 # run the Flask app (which will launch a local webserver)
