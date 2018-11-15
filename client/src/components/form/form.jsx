@@ -12,7 +12,7 @@ const Label = styled.label`
 `;
 
 const Button = styled.button`
-  background: #f4989c;
+  background: #d77a61;
   border: 2px solid black;
   -webkit-border-radius: 45px;
   -moz-border-radius: 45px;
