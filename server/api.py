@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import json
 import requests
 
@@ -27,17 +27,19 @@ def example_data():
 
 
 # This route has yet to be completed
-@app.route('/searchJobs/<params>', methods=['GET', 'POST'])
-def search_jobs(params):
     """
     Takes in a json. Example:
     {
-    keywords": "Java"
+    "keywords": "Java"
     "location": "New York"
     "email": "cgoode@gmail.com"
     "full-time":true
     }
     """
+@app.route('/searchJobs/', methods=['POST'])    
+def search_jobs():
+    if not request.json:
+        abort(400)
 
     # TODO: Build a URL to make a request with GitHub Jobs
     URL = "https://jobs.github.com/positions.json?"  # Base
@@ -47,11 +49,28 @@ def search_jobs(params):
     #       Add to URL in the form "?<parm name>=<parm>", if there is more than one, put "&" between them
     #                         ie: "description=python&location=new+york"
 
+    # Testing:
+    # Assuming fields are present
+
+    # Assuming single keyword
+    description = "description=" + request.json['keywords'] + "&"
+
+    # Replaces spaces with '+'
+    location = request.json['location']
+    if (' ' in location):
+        location.replace(' ', '+')
+    
+    # Adds url syntax
+    location = "location=" + location
+
+    # Builds URL
+    URL += description + location
+
     # Sending get request and saving the response as response object
     r = requests.get(url=URL)
     data = r.json()
 
-    # I dont know if we want to sort this here some more or let the frontend handle it
+    # We're giving everything to the front end
     return json.dumps(data)
 
 
