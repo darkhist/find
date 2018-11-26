@@ -7,7 +7,6 @@ dist
 
 # lockfiles
 package-lock.json
-yarn.lock
 
 # logs
 yarn-error.log
