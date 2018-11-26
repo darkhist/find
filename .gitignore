@@ -1,3 +1,19 @@
+# editor settings
+.vscode
+
+# dependencies
+node_modules
+
+# build files
+dist
+.cache
+
+# lockfiles
+package-lock.json
+
+# logs
+yarn-error.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -28,8 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 #### Back End Dependencies
 
-1. `cd server`
-2. `pip install -Ur requirements.txt`
+1. `pip install -Ur requirements.txt`
 
 ## Running Find Locally
 
@@ -42,7 +41,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Back End
 
 1. `cd server`
-2. `FLASK_APP=api flask run`
+2. `python3 api.py`
 
 ## Deployment
 

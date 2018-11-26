@@ -7,15 +7,19 @@ import example_data as ex
 
 app = Flask(__name__)
 
+# Base Endpoint
+@app.route('/')
+def home():
+    return 'Welcome to the API! 🎉 Try visiting /test or /example'
 
-# This is for testing purposes. Example json from GitHub job API
+# Endpoint for testing purposes
+# Example JSON from GitHub job API
 # Description = Python, Location = New York
 @app.route('/test')
 def example_json():
     # sending get request and saving the response as response object
     URL = "https://jobs.github.com/positions.json?description=python&location=new+york"
-    r = requests.get(url=URL)
-    data = r.json()
+    data = requests.get(url=URL).json()
 
     ret = {}
 
@@ -25,15 +29,13 @@ def example_json():
     # I dont know if we want to sort this here some more or let the frontend handle it
     return json.dumps(ret)
 
-
 # Just returns data from example.data (Based off the GitHub Jobs Example)
-@app.route('/exampledata')
+@app.route('/example')
 def example_data():
-    return ex.get_exampledata()
-
+    return json.dumps(ex.get_exampledata())
 
 # This route has yet to be completed
-@app.route('/searchJobs', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def search_jobs():
     """
     Takes in a json. Example:
@@ -61,7 +63,6 @@ def search_jobs():
 
     # I dont know if we want to sort this here some more or let the frontend handle it
     return "<p> Hi <p>"
-
 
 # run the Flask app (which will launch a local webserver)
 if __name__ == "__main__":
