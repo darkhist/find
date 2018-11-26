@@ -6,7 +6,6 @@ import example_data as ex
 
 app = Flask(__name__)
 
-
 # This is for testing purposes. Example json from GitHub job API
 # Description = Python, Location = New York
 @app.route('/test')
@@ -16,24 +15,19 @@ def example_json():
     r = requests.get(url=URL)
     data = r.json()
 
-    # I dont know if we want to sort this here some more or let the frontend handle it
     return json.dumps(data)
-
 
 # Just returns data from example.data (Based off the GitHub Jobs Example)
 @app.route('/exampledata')
 def example_data():
     return ex.get_exampledata()
 
-
-# This route has yet to be completed
     """
     Takes in a json. Example:
     {
-    "keywords": "Java"
-    "location": "New York"
-    "email": "cgoode@gmail.com"
-    "full-time":true
+    "keywords": "Java, Node",
+    "location": "New York",
+    "full-time": "true"
     }
     """
 @app.route('/searchJobs/', methods=['POST'])    
@@ -41,30 +35,39 @@ def search_jobs():
     if not request.json:
         abort(400)
 
-    # TODO: Build a URL to make a request with GitHub Jobs
-    URL = "https://jobs.github.com/positions.json?"  # Base
+    # Base
+    URL = "https://jobs.github.com/positions.json?"
 
-    # For each parameter in the json, check if it exists, if so add to URL
-    #       If there is spaces in the parameter, ie: "New York", replace spaces to make it "New+York"
-    #       Add to URL in the form "?<parm name>=<parm>", if there is more than one, put "&" between them
-    #                         ie: "description=python&location=new+york"
-
-    # Testing:
-    # Assuming fields are present
-
-    # Assuming single keyword
-    description = "description=" + request.json['keywords'] + "&"
-
-    # Replaces spaces with '+'
+    # If a category doesn't have an input, 
+    # assuming the front end will continue
+    # substituting the value with an empty string,
+    # the Job API handles it perfectly. 
+    # Ex: these two requests have the same output:
+    #
+    # https://jobs.github.com/positions.json?location=new+york
+    # https://jobs.github.com/positions.json?description=&location=new+york
+    #
+    # This means we can just throw inputs into an very simple URL generator
+    # because it won't matter if the values are present or not
+    
+    keywords = request.json['keywords']
     location = request.json['location']
+    fulltime = request.json['full-time']
+
+    # Replace spaces with '+' and add url syntax
+    if (', ' in keywords):
+        location.replace(', ', '+')
+    description = "description=" + keywords
+
     if (' ' in location):
         location.replace(' ', '+')
-    
-    # Adds url syntax
-    location = "location=" + location
+    location = "&location=" + location
 
-    # Builds URL
-    URL += description + location
+    fulltime = "&full_time=" + fulltime.upper()
+
+    # Build URL
+    URL += description + location + fulltime
+    #print(URL)
 
     # Sending get request and saving the response as response object
     r = requests.get(url=URL)
