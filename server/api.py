@@ -2,34 +2,16 @@ from flask import Flask, request
 import json
 import requests
 
-import example_data as ex
-
 app = Flask(__name__)
 
-# This is for testing purposes. Example json from GitHub job API
-# Description = Python, Location = New York
-@app.route('/test')
-def example_json():
-    # sending get request and saving the response as response object
-    URL = "https://jobs.github.com/positions.json?description=python&location=new+york"
-    r = requests.get(url=URL)
-    data = r.json()
-
-    return json.dumps(data)
-
-# Just returns data from example.data (Based off the GitHub Jobs Example)
-@app.route('/exampledata')
-def example_data():
-    return ex.get_exampledata()
-
-    """
-    Takes in a json. Example:
-    {
-    "keywords": "Java, Node",
-    "location": "New York",
-    "full-time": "true"
-    }
-    """
+"""
+Takes in a json. Example:
+{
+"keywords": "Java, AWS",
+"location": "New York",
+"full-time": "true"
+}
+"""
 @app.route('/searchJobs/', methods=['POST'])    
 def search_jobs():
     if not request.json:
