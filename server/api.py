@@ -1,68 +1,64 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 import json
 import requests
 import sys
 
-import example_data as ex
-
 app = Flask(__name__)
 
-# Base Endpoint
-@app.route('/')
-def home():
-    return 'Welcome to the API! 🎉 Try visiting /test or /example'
-
-# Endpoint for testing purposes
-# Example JSON from GitHub job API
-# Description = Python, Location = New York
-@app.route('/test')
-def example_json():
-    # sending get request and saving the response as response object
-    URL = "https://jobs.github.com/positions.json?description=python&location=new+york"
-    data = requests.get(url=URL).json()
-
-    ret = {}
-
-    for job in data:
-        ret[job["id"]] = {"title": job["title"], "location": job["location"], "company": job["company"]}
-
-    # I dont know if we want to sort this here some more or let the frontend handle it
-    return json.dumps(ret)
-
-# Just returns data from example.data (Based off the GitHub Jobs Example)
-@app.route('/example')
-def example_data():
-    return json.dumps(ex.get_exampledata())
-
-# This route has yet to be completed
-@app.route('/search', methods=['GET', 'POST'])
+'''
+Args: JSON Object
+Example: 
+{
+"keywords": "Java, AWS",
+"location": "New York",
+"full-time": "true"
+}
+'''
+@app.route('/search/', methods=['POST'])
 def search_jobs():
-    """
-    Takes in a json. Example:
-    {
-    keywords": "Java"
-    "location": "New York"
-    "email": "cgoode@gmail.com"
-    "full-time":true
-    }
-    """
-    ID = request.args.get('id')
-    print(ID, file=sys.stderr)
+    if not request.json:
+        abort(400)
 
-    # TODO: Build a URL to make a request with GitHub Jobs
-    URL = "https://jobs.github.com/positions.json?"  # Base
+    # Base
+    URL = "https://jobs.github.com/positions.json?"
 
-    # For each parameter in the json, check if it exists, if so add to URL
-    #       If there is spaces in the parameter, ie: "New York", replace spaces to make it "New+York"
-    #       Add to URL in the form "?<parm name>=<parm>", if there is more than one, put "&" between them
-    #                         ie: "description=python&location=new+york"
+    # If a category doesn't have an input, 
+    # assuming the front end will continue
+    # substituting the value with an empty string,
+    # the Job API handles it perfectly. 
+    # Ex: these two requests have the same output:
+    #
+    # https://jobs.github.com/positions.json?location=new+york
+    # https://jobs.github.com/positions.json?description=&location=new+york
+    #
+    # This means we can just throw inputs into an very simple URL generator
+    # because it won't matter if the values are present or not
+    
+    keywords = request.json['keywords']
+    location = request.json['location']
+    fulltime = request.json['full-time']
+
+    # Replace spaces with '+' and add url syntax
+    if (', ' in keywords):
+        location.replace(', ', '+')
+    description = "description=" + keywords
+
+    if (' ' in location):
+        location.replace(' ', '+')
+    location = "&location=" + location
+
+    fulltime = "&full_time=" + fulltime.upper()
+
+    # Build URL
+    URL += description + location + fulltime
+    #print(URL)
 
     # Sending get request and saving the response as response object
     r = requests.get(url=URL)
     data = r.json()
 
-    # I dont know if we want to sort this here some more or let the frontend handle it
-    return "<p> Hi <p>"
+    # We're giving everything to the front end
+    return json.dumps(data)
 
 # run the Flask app (which will launch a local webserver)
 if __name__ == "__main__":
