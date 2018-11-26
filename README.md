@@ -1,38 +1,63 @@
-# Project Title Goes Here
+# Find
 
-Project Description Goes Here
+> Job Finding Made Easy
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Check [here](##Deployment) for deployment notes.
 
 ### Prerequisites
 
-This project was built with: 
+#### Front End Dependencies
 
 * [React](https://reactjs.org/)
+* [Styled Components](https://www.styled-components.com/)
 * [Parcel](https://parceljs.org/)
+
+#### Back End Dependencies
+
 * [Python 3.6.5](https://www.python.org/)
-* Other Dependencies Go Here
+* [Flask](http://flask.pocoo.org/)
 
 ### Installation Guide
 
-Add Installation Instructions for Dependencies Herey
+#### Front End Dependencies
 
-## Testing
+1. `cd client`
+2. `yarn`
 
-Add Testing Info Here – If Necessary 
+#### Back End Dependencies
+
+1. `cd server`
+2. `pip install -Ur requirements.txt`
+
+## Running Find Locally
+
+### Front End
+
+1. `cd client`
+2. `yarn dev`
+3. Visit `localhost:1234`
+
+### Back End
+
+1. `cd server`
+2. `FLASK_APP=api flask run`
 
 ## Deployment
 
-Add Deployment Instructions Here
+> // TODO - add links after app is finished
+
+The front end for this project is hosted via Netlify, and can be found [here]()
+
+The API for this project is hosted via Heroku, and can be found [here]()
 
 ## Authors
 
 Joseph Ward  
 Tyler Moul  
 Trace Ohrt  
-Cole Goode  
+Colton Goode  
 Quinn Salas  
 
 ## License
