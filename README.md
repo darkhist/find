@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project was built with: 
+This project was built with:
 
 * [React](https://reactjs.org/)
 * [Parcel](https://parceljs.org/)
@@ -17,22 +17,26 @@ This project was built with:
 
 ### Installation Guide
 
-Add Installation Instructions for Dependencies Herey
+1. Install the required Dependencies (More needs to be added)
+  - pip install -Ur requirements.txt
 
 ## Testing
 
-Add Testing Info Here – If Necessary 
+Add Testing Info Here – If Necessary
 
 ## Deployment
 
-Add Deployment Instructions Here
+1. Server
+  - FLASK_APP=api flask run
+2. Client
+  - TODO
 
 ## Authors
 
 Joseph Ward  
 Tyler Moul  
 Trace Ohrt  
-Cole Goode  
+Colton Goode  
 Quinn Salas  
 
 ## License
