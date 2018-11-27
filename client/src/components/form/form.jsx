@@ -32,17 +32,17 @@ const Button = styled.button`
   }
 `;
 
-const request = async formData => {
-   const response = await fetch('http://localhost:8080/search', {
-    method: "POST",
+const request = async (formData) => {
+  const response = await fetch('http://localhost:8080/search', {
+    method: 'POST',
     headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(formData)
-  })
-  return await response.json();
-}
+  });
+  return response.json();
+};
 
 const SearchForm = () => (
   <div>
@@ -53,7 +53,7 @@ const SearchForm = () => (
         location: '',
         email: ''
       }}
-      onSubmit={async values => {
+      onSubmit={async (values) => {
         const results = await request(values);
         console.log(results);
       }}
