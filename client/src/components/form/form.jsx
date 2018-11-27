@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
 const Title = styled.h4`
+  font-style: italic;
   margin: 1em 0;
   text-align: center;
 `;
@@ -40,8 +41,7 @@ const request = async formData => {
     },
     body: JSON.stringify(formData)
   })
-  const json = await response.json();
-  return json;
+  return await response.json();
 }
 
 const SearchForm = () => (
@@ -63,7 +63,7 @@ const SearchForm = () => (
           <Field
             name="keywords"
             type="text"
-            placeholder="Python, Java, Amazon"
+            placeholder="Python, JavaScript, etc"
           />
           <br />
           <Label> Location </Label>
