@@ -13,16 +13,36 @@ const Label = styled.label`
 
 const Button = styled.button`
   background: #d77a61;
-  border: 2px solid black;
+  border-radius: 45px;
   -webkit-border-radius: 45px;
   -moz-border-radius: 45px;
-  border-radius: 45px;
   color: white;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em;
   width: 5em;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 0;
+  }
 `;
+
+const request = async formData => {
+   const response = await fetch('http://localhost:8080/search', {
+    method: "POST",
+    headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+  const json = await response.json();
+  return json;
+}
 
 const SearchForm = () => (
   <div>
@@ -33,18 +53,10 @@ const SearchForm = () => (
         location: '',
         email: ''
       }}
-      onSubmit={values => {
-        fetch('http://localhost:8080/search', {
-          method: "POST",
-          headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(values)
-        })
-        .then(response => response.json())
-        .then(data => console.log(data));
-        }}
+      onSubmit={async values => {
+        const results = await request(values);
+        console.log(results);
+      }}
       render={() => (
         <Form>
           <Label> Job Description </Label>
