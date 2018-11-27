@@ -8,13 +8,20 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended"
   ],
-  "plugins": ["jsx-a11y", "react"],
+  "plugins": [
+    "jsx-a11y",
+    "react"
+  ],
   "rules": {
     "comma-dangle": "off",
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true
-    }],
-    "no-console": "off", 
+    "class-methods-use-this": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "no-console": "off",
     "quote-props": "off"
   }
 }

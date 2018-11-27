@@ -16,6 +16,8 @@ Example:
 "full-time": "true"
 }
 '''
+
+
 @app.route('/search', methods=['POST'])
 def search_jobs():
     if not request.json:
@@ -47,6 +49,7 @@ def search_jobs():
 
     # Return response to client
     return json.dumps(data)
+
 
 # run the Flask app (which will launch a local webserver)
 if __name__ == "__main__":

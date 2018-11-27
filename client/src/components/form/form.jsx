@@ -56,6 +56,8 @@ const SearchForm = () => (
       onSubmit={async (values) => {
         const results = await request(values);
         console.log(results);
+        // Pass data to child component
+        // <Display data={results} />
       }}
       render={() => (
         <Form>
