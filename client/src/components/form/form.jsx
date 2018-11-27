@@ -33,12 +33,18 @@ const SearchForm = () => (
         location: '',
         email: ''
       }}
-      /* TODO: Github Jobs API Call Goes Here */
       onSubmit={values => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-        }, 500);
-      }}
+        fetch('http://localhost:8080/search', {
+          method: "POST",
+          headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(values)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data));
+        }}
       render={() => (
         <Form>
           <Label> Job Description </Label>
@@ -62,10 +68,7 @@ const SearchForm = () => (
             placeholder="jane.doe@gmail.com"
           />
           <br />
-          <Label> Full Time? </Label>
-          <Field name="full-time" type="checkbox" />
-          <br />
-          <Button> Search </Button>
+          <Button type="submit"> Search </Button>
         </Form>
       )}
     />
