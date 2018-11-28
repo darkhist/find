@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
+import Results from '../results/results';
+
 const Title = styled.h4`
   font-style: italic;
   margin: 1em 0;
@@ -51,47 +53,53 @@ export default class SearchForm extends Component {
   }
 
   render() {
+    const { data } = this.state;
+
     return (
-      <div>
-        <Title> Search for Jobs! </Title>
-        <Formik
-          initialValues={{
-            keywords: '',
-            location: '',
-            email: ''
-          }}
-          onSubmit={async (values) => {
-            const results = await request(values);
-            this.setState({ data: results });
-            console.log(this.state);
-          }}
-          render={() => (
-            <Form>
-              <Label> Job Description </Label>
-              <Field
-                name="keywords"
-                type="text"
-                placeholder="Python, JavaScript, etc"
-              />
-              <br />
-              <Label> Location </Label>
-              <Field
-                name="location"
-                type="text"
-                placeholder="New York, 11211"
-              />
-              <br />
-              <Label> Email </Label>
-              <Field
-                name="email"
-                type="email"
-                placeholder="jane.doe@gmail.com"
-              />
-              <br />
-              <Button type="submit"> Search </Button>
-            </Form>
-          )}
-        />
+      <div className="formik-results">
+        <div className="formik">
+          <Title> Search for jobs! </Title>
+          <Formik
+            initialValues={{
+              keywords: '',
+              location: '',
+              email: ''
+            }}
+            onSubmit={async (values) => {
+              const results = await request(values);
+              this.setState({ data: results });
+            }}
+            render={() => (
+              <Form>
+                <Label> Job Description </Label>
+                <Field
+                  name="keywords"
+                  type="text"
+                  placeholder="Python, JavaScript, etc"
+                />
+                <br />
+                <Label> Location </Label>
+                <Field
+                  name="location"
+                  type="text"
+                  placeholder="New York, 11211"
+                />
+                <br />
+                <Label> Email </Label>
+                <Field
+                  name="email"
+                  type="email"
+                  placeholder="jane.doe@gmail.com"
+                />
+                <br />
+                <Button type="submit"> Search </Button>
+              </Form>
+            )}
+          />
+        </div>
+        <div className="results-container">
+          <Results results={data} />
+        </div>
       </div>
     );
   }
