@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
@@ -44,49 +44,56 @@ const request = async (formData) => {
   return response.json();
 };
 
-const SearchForm = () => (
-  <div>
-    <Title> Search for Jobs! </Title>
-    <Formik
-      initialValues={{
-        keywords: '',
-        location: '',
-        email: ''
-      }}
-      onSubmit={async (values) => {
-        const results = await request(values);
-        console.log(results);
-        // Pass data to child component
-        // <Display data={results} />
-      }}
-      render={() => (
-        <Form>
-          <Label> Job Description </Label>
-          <Field
-            name="keywords"
-            type="text"
-            placeholder="Python, JavaScript, etc"
-          />
-          <br />
-          <Label> Location </Label>
-          <Field
-            name="location"
-            type="text"
-            placeholder="New York, 11211"
-          />
-          <br />
-          <Label> Email </Label>
-          <Field
-            name="email"
-            type="email"
-            placeholder="jane.doe@gmail.com"
-          />
-          <br />
-          <Button type="submit"> Search </Button>
-        </Form>
-      )}
-    />
-  </div>
-);
+export default class SearchForm extends Component {
+  constructor() {
+    super();
+    this.state = { data: [] };
+  }
 
-export default SearchForm;
+  render() {
+    return (
+      <div>
+        <Title> Search for Jobs! </Title>
+        <Formik
+          initialValues={{
+            keywords: '',
+            location: '',
+            email: ''
+          }}
+          onSubmit={async (values) => {
+            const results = await request(values);
+            this.setState({ data: results });
+            const { data } = this.state;
+            console.log(data);
+          }}
+          render={() => (
+            <Form>
+              <Label> Job Description </Label>
+              <Field
+                name="keywords"
+                type="text"
+                placeholder="Python, JavaScript, etc"
+              />
+              <br />
+              <Label> Location </Label>
+              <Field
+                name="location"
+                type="text"
+                placeholder="New York, 11211"
+              />
+              <br />
+              <Label> Email </Label>
+              <Field
+                name="email"
+                type="email"
+                placeholder="jane.doe@gmail.com"
+              />
+              <br />
+              <Button type="submit"> Search </Button>
+            </Form>
+          )}
+        />
+      </div>
+    );
+  }
+}
