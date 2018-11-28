@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
-import Results from '../results/results';
+import Results from './results/results';
 
 const Title = styled.h4`
   font-style: italic;

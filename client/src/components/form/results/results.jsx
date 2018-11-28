@@ -19,6 +19,14 @@ const Results = ({ results }) => {
       {result.location}
     </li>));
 
+  if (results.length === 0) {
+    return (
+      <Subtitle>
+        No Results Found!
+        <span role="img" aria-label="sadface"> 😢 </span>
+      </Subtitle>
+    );
+  }
   return (
     <div className="results">
       <Subtitle> Results </Subtitle>
