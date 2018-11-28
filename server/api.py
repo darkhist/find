@@ -1,18 +1,24 @@
-from flask import Flask, request
+from flask import Flask, request, abort, jsonify
+from flask_cors import CORS
 import json
 import requests
+import sys
 
 app = Flask(__name__)
+CORS(app)
 
-"""
-Takes in a json. Example:
+'''
+Args: JSON Object
+Example: 
 {
 "keywords": "Java, AWS",
 "location": "New York",
 "full-time": "true"
 }
-"""
-@app.route('/searchJobs/', methods=['POST'])    
+'''
+
+
+@app.route('/search', methods=['POST'])
 def search_jobs():
     if not request.json:
         abort(400)
@@ -20,21 +26,10 @@ def search_jobs():
     # Base
     URL = "https://jobs.github.com/positions.json?"
 
-    # If a category doesn't have an input, 
-    # assuming the front end will continue
-    # substituting the value with an empty string,
-    # the Job API handles it perfectly. 
-    # Ex: these two requests have the same output:
-    #
-    # https://jobs.github.com/positions.json?location=new+york
-    # https://jobs.github.com/positions.json?description=&location=new+york
-    #
-    # This means we can just throw inputs into an very simple URL generator
-    # because it won't matter if the values are present or not
-    
-    keywords = request.json['keywords']
-    location = request.json['location']
-    fulltime = request.json['full-time']
+    req = request.get_json()
+
+    keywords = req['keywords']
+    location = req['location']
 
     # Replace spaces with '+' and add url syntax
     if (', ' in keywords):
@@ -45,17 +40,14 @@ def search_jobs():
         location.replace(' ', '+')
     location = "&location=" + location
 
-    fulltime = "&full_time=" + fulltime.upper()
-
     # Build URL
-    URL += description + location + fulltime
-    #print(URL)
+    URL += description + location
 
-    # Sending get request and saving the response as response object
-    r = requests.get(url=URL)
-    data = r.json()
+    # Send GET request to Github Jobs API
+    # Save response as response object
+    data = requests.get(url=URL).json()
 
-    # We're giving everything to the front end
+    # Return response to client
     return json.dumps(data)
 
 
