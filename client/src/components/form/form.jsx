@@ -33,7 +33,7 @@ const Button = styled.button`
 `;
 
 const request = async (formData) => {
-  const response = await fetch('http://localhost:8080/search', {
+  const response = await fetch('https://mis407team4.herokuapp.com/search', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -63,8 +63,7 @@ export default class SearchForm extends Component {
           onSubmit={async (values) => {
             const results = await request(values);
             this.setState({ data: results });
-            const { data } = this.state;
-            console.log(data);
+            console.log(this.state);
           }}
           render={() => (
             <Form>
