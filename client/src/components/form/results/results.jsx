@@ -6,7 +6,22 @@ const Subtitle = styled.h3`
 `;
 
 const Results = ({ results }) => {
-  console.log(results);
+  if (results === undefined) {
+    return (
+      <div />
+    );
+  }
+
+  if (results.length === 0) {
+    return (
+      <div>
+        <Subtitle>
+          No Results
+          <span role="img" aria-label="sadface"> 😢 </span>
+        </Subtitle>
+      </div>
+    );
+  }
 
   const jobs = results.map(result => (
     <li key={result.id}>
@@ -14,21 +29,16 @@ const Results = ({ results }) => {
       <br />
       {result.title}
       <br />
-      {result.how_to_apply}
+      {/* {result.description}
       <br />
+      {result.how_to_apply}
+      <br /> */}
       {result.location}
-    </li>));
+    </li>
+  ));
 
-  if (results.length === 0) {
-    return (
-      <Subtitle>
-        No Results Found!
-        <span role="img" aria-label="sadface"> 😢 </span>
-      </Subtitle>
-    );
-  }
   return (
-    <div className="results">
+    <div>
       <Subtitle> Results </Subtitle>
       <ul>
         {jobs}
@@ -36,6 +46,5 @@ const Results = ({ results }) => {
     </div>
   );
 };
-
 
 export default Results;

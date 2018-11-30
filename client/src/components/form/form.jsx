@@ -49,7 +49,7 @@ const request = async (formData) => {
 export default class SearchForm extends Component {
   constructor() {
     super();
-    this.state = { data: [] };
+    this.state = { data: undefined };
   }
 
   render() {
