@@ -3,6 +3,7 @@ from flask_cors import CORS
 import json
 import requests
 import sys
+import re
 
 app = Flask(__name__)
 CORS(app)
@@ -47,8 +48,18 @@ def search_jobs():
     # Save response as response object
     data = requests.get(url=URL).json()
 
+    # Parse the URL from the how to apply section
+    for job in data:
+        job.update({'how_to_apply': re.findall(r'<a href=\"(.*?)\"', job['how_to_apply'])[0]})
+        # For Debugging
+        # print(job['how_to_apply'], file=sys.stderr)
+
+    # Parse the description niceley for the frontend
+    """ TODO """
+
     # Return response to client
     return json.dumps(data)
+
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
