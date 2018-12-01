@@ -29,11 +29,10 @@ const Results = ({ results }) => {
       <br />
       {result.title}
       <br />
-      {/* {result.description}
-      <br />
+      Apply Here:
       {result.how_to_apply}
-      <br /> */}
-      {result.location}
+      <br />
+      {result.company_url}
     </li>
   ));
 
