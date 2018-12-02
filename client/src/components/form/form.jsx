@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
+
+import Results from './results/results';
 
 const Title = styled.h4`
   font-style: italic;
@@ -33,7 +35,7 @@ const Button = styled.button`
 `;
 
 const request = async (formData) => {
-  const response = await fetch('http://localhost:8080/search', {
+  const response = await fetch('https://mis407team4.herokuapp.com/search', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -44,49 +46,61 @@ const request = async (formData) => {
   return response.json();
 };
 
-const SearchForm = () => (
-  <div>
-    <Title> Search for Jobs! </Title>
-    <Formik
-      initialValues={{
-        keywords: '',
-        location: '',
-        email: ''
-      }}
-      onSubmit={async (values) => {
-        const results = await request(values);
-        console.log(results);
-        // Pass data to child component
-        // <Display data={results} />
-      }}
-      render={() => (
-        <Form>
-          <Label> Job Description </Label>
-          <Field
-            name="keywords"
-            type="text"
-            placeholder="Python, JavaScript, etc"
-          />
-          <br />
-          <Label> Location </Label>
-          <Field
-            name="location"
-            type="text"
-            placeholder="New York, 11211"
-          />
-          <br />
-          <Label> Email </Label>
-          <Field
-            name="email"
-            type="email"
-            placeholder="jane.doe@gmail.com"
-          />
-          <br />
-          <Button type="submit"> Search </Button>
-        </Form>
-      )}
-    />
-  </div>
-);
+export default class SearchForm extends Component {
+  constructor() {
+    super();
+    this.state = { data: undefined };
+  }
 
-export default SearchForm;
+  render() {
+    const { data } = this.state;
+
+    return (
+      <div className="formik-results">
+        <div className="formik">
+          <Title> Search for jobs! </Title>
+          <Formik
+            initialValues={{
+              keywords: '',
+              location: '',
+              email: ''
+            }}
+            onSubmit={async (values) => {
+              const results = await request(values);
+              this.setState({ data: results });
+            }}
+            render={() => (
+              <Form>
+                <Label> Job Description </Label>
+                <Field
+                  name="keywords"
+                  type="text"
+                  placeholder="Python, JavaScript, etc"
+                />
+                <br />
+                <Label> Location </Label>
+                <Field
+                  name="location"
+                  type="text"
+                  placeholder="New York, 11211"
+                />
+                <br />
+                <Label> Email </Label>
+                <Field
+                  name="email"
+                  type="email"
+                  placeholder="jane.doe@gmail.com"
+                />
+                <br />
+                <Button type="submit"> Search </Button>
+              </Form>
+            )}
+          />
+        </div>
+        <div className="results-container">
+          <Results results={data} />
+        </div>
+      </div>
+    );
+  }
+}

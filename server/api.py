@@ -1,21 +1,17 @@
+from bs4 import BeautifulSoup
 from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 import json
 import requests
-import sys
 
 app = Flask(__name__)
 CORS(app)
 
-'''
-Args: JSON Object
-Example:
-{
-"keywords": "Java, AWS",
-"location": "New York",
-"full-time": "true"
-}
-'''
+
+def cleanHowToApply(html):
+    soup = BeautifulSoup(html, features="html.parser")
+    for link in soup.find_all('a', href=True):
+        return link['href']
 
 
 @app.route('/search', methods=['POST'])
@@ -47,12 +43,18 @@ def search_jobs():
     # Save response as response object
     data = requests.get(url=URL).json()
 
+    # Cleanup
+    for job in data:
+        job.update({'how_to_apply': cleanHowToApply(job['how_to_apply'])})
+
     # Return response to client
     return json.dumps(data)
+
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
     return "<p> Connected! </p>"
+
 
 # run the Flask app (which will launch a local webserver)
 if __name__ == "__main__":

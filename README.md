@@ -45,11 +45,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Deployment
 
-> // TODO - add links after app is finished
+The front end for this project is hosted via Netlify  
+Check it out [here](https://hellofind.netlify.com/)
 
-The front end for this project is hosted via Netlify, and can be found [here]()
-
-The API for this project is hosted via Heroku, and can be found [here]()
+The back end for this project is hosted via Heroku
 
 ## Authors
 

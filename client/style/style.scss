@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Prata');
-
 *,
 *:before,
 *:after {
@@ -8,7 +6,7 @@
 
 html {
   box-sizing: border-box;
-  font-family: 'Prata', serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -33,4 +31,19 @@ input {
 
 input:focus {
   text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 200;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0em 3em;
 }
