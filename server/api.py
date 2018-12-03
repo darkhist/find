@@ -14,6 +14,11 @@ def cleanHowToApply(html):
         return link['href']
 
 
+@app.route('/', methods=['POST', 'GET'])
+def test():
+    return "Welcome to the API 🎉"
+
+
 @app.route('/search', methods=['POST'])
 def search_jobs():
     if not request.json:
@@ -49,11 +54,6 @@ def search_jobs():
 
     # Return response to client
     return json.dumps(data)
-
-
-@app.route('/test', methods=['POST', 'GET'])
-def test():
-    return "<p> Connected! </p>"
 
 
 # run the Flask app (which will launch a local webserver)
