@@ -58,7 +58,7 @@ export default class SearchForm extends Component {
     return (
       <div className="formik-results">
         <div className="formik">
-          <Title> Search for jobs! </Title>
+          <Title> Job Finding Made Easy </Title>
           <Formik
             initialValues={{
               keywords: '',

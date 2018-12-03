@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TitleStyle = styled.h1`
-  margin: 0.5em 0;
+  margin: 1em 0 0 0;
   text-align: center;
 `;
 
