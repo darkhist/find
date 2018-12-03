@@ -70,7 +70,7 @@ export default class SearchForm extends Component {
               this.setState({ data: results });
             }}
             render={() => (
-              <Form>
+              <Form autoComplete="off">
                 <Label> Job Description </Label>
                 <Field
                   name="keywords"
