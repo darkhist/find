@@ -1,8 +1,15 @@
+import json, requests, os
+from os.path import join, dirname
+from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
-import json
-import requests
+
+# Create .env file path.
+dotenv_path = join(dirname(__file__), '.env')
+ 
+# Load file from the path.
+load_dotenv(dotenv_path)
 
 app = Flask(__name__)
 CORS(app)
@@ -50,11 +57,39 @@ def search_jobs():
     # Return response to client
     return json.dumps(data)
 
+@app.route('/email', methods=['POST'])
+# Post request example:
+# {
+#     "email": "trump@cheeto.com",
+#     "body": "<h1> MixMax takes html here. This will be useful. </h1>"
+# }
+def mixMax():
+    if not request.json:
+        abort(400)
+
+    req = request.get_json()
+
+    reqHeaders = {
+        'content-type': 'application/json',
+        'X-API-Token': os.getenv('MIXMAX_API_TOKEN')
+    }
+
+    payload = json.dumps({
+        "message": {
+            "to": req['email'],
+            "from": 'Find@Job.com',
+            "subject": "JobFind Results!",
+            "html": req['body']
+        }
+    })
+
+    r = requests.post("https://api.mixmax.com/v1/send/", data=payload, headers=reqHeaders)
+
+    return str(r.status_code) + " " + r.reason
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
     return "<p> Connected! </p>"
-
 
 # run the Flask app (which will launch a local webserver)
 if __name__ == "__main__":
