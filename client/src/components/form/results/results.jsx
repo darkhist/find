@@ -1,40 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Card = styled.div`
+  border: 1px solid black;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 
+  0 3px 6px rgba(0,0,0,0.23);
+  text-align: left;
+  margin: 2em 0;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+    0 10px 10px rgba(0,0,0,0.22);
+  }
+`;
+
+const Job = styled.li`
+  padding: .5em;
+`;
+
+const JobTitle = styled.h5`
+  font-size: 1.15em;
+`;
+
 const Subtitle = styled.h3`
   font-size: 1.5em;
   text-align: center;
 `;
 
-const Card = styled.div`
-  border: 1px solid black;
-  text-align: left;
-  margin: 3em 0;
-`;
+const Link = styled.a`
+  color: ${props => props.company ? '#D77A61' : 'black'};
+  font-size: ${props => props.company ? '1.25em' : '1.15em'};
+  font-weight: ${props => props.company ? 'bold' : '200'};
+  text-decoration-line: none;
 
-const Job = styled.li`
-  font-size: 1em;
-  padding: .5em;
-`;
-
-const Title = styled.h5`
-  font-size: 1em;
-  margin: 0;
-`;
-
-const Company = styled.h4`
-  font-size: 1em;
-  margin: 0;
-`;
-
-const Apply = styled.h6`
-  font-size: 1em;
-  margin: 0;
-`;
-
-const CompanyURL = styled.a`
-  font-weight: bold;
-  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 const Results = ({ results }) => {
@@ -58,22 +60,17 @@ const Results = ({ results }) => {
   const jobs = results.map(result => (
     <Card key={result.id}>
       <Job>
-        <Company>
+        <Link company href={result.company_url}>
           {result.company}
-        </Company>
+        </Link>
 
-        <Title>
+        <JobTitle>
           {result.title}
-        </Title>
+        </JobTitle>
 
-        <Apply>
-          Apply: &thinsp;
-          {result.how_to_apply}
-        </Apply>
-
-        <CompanyURL>
-          {result.company_url}
-        </CompanyURL>
+        <Link href={result.how_to_apply}>
+          Apply
+        </Link>
       </Job>
     </Card>
   ));
