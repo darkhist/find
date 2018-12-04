@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
 import Results from './results/results';
+
 export const Title = styled.h4`
   font-style: italic;
   margin: 1em 0;
@@ -97,7 +98,7 @@ export default class SearchForm extends Component {
           />
         </div>
 
-        <div className="results-container">
+        <div className="results">
           <Results results={data} />
         </div>
 

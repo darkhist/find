@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Pie from '../../vis/pie';
-import Map from '../../map/map'
+
+import Pie from '../../vis/pie/pie';
+import Map from '../../vis/map/map';
 
 export const Card = styled.div`
   border: 1px solid black;
@@ -83,13 +84,14 @@ const Results = ({ results }) => {
 
   return (
     <div>
-
       <div className="vis">
-          <Subtitle> Stats </Subtitle>
-          <PieChart>
-            <Pie />
-          </PieChart>
-          <Map />
+        <Subtitle>
+          Stats
+        </Subtitle>
+        <PieChart>
+          <Pie />
+        </PieChart>
+        <Map />
       </div>
 
       <Subtitle> Results </Subtitle>

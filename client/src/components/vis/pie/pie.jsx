@@ -1,7 +1,7 @@
 import React from 'react';
 import { RadialChart } from 'react-vis';
 
-import '../../../node_modules/react-vis/dist/style.css';
+import '../../../../node_modules/react-vis/dist/style.css';
 
 const myData = [{ angle: 1 }, { angle: 5 }, { angle: 2 }];
 
