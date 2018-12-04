@@ -83,11 +83,8 @@ const Results = ({ results }) => {
   return (
     <div className="vis-results">
 
-      <div className="vis">
-        <div className="subtitle">
-          <Subtitle> Visualizations </Subtitle>
-        </div>
-
+      <div className="visualizations">
+        <Subtitle> Visualizations </Subtitle>
         <div className="pie-map">
           <div className="pie">
             <Pie />
@@ -99,16 +96,14 @@ const Results = ({ results }) => {
       </div>
 
       <div className="results">
-        <div className="subtitle">
-          <Subtitle> Results </Subtitle>
-        </div>
-
+        <Subtitle> Results </Subtitle>
         <div className="jobs">
           <ul>
             {jobs}
           </ul>
         </div>
       </div>
+
     </div>
   );
 };

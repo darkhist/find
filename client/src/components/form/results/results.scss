@@ -1,11 +1,13 @@
 .vis-results {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 450px);
 }
 
 .pie-map {
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  margin: 2em;
 }
 
 .pie {
