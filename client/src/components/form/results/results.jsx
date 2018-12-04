@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Card = styled.div`
+export const Card = styled.div`
   border: 1px solid black;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 
   0 3px 6px rgba(0,0,0,0.23);
@@ -14,20 +14,20 @@ const Card = styled.div`
   }
 `;
 
-const Job = styled.li`
+export const Job = styled.li`
   padding: .5em;
 `;
 
-const JobTitle = styled.h5`
+export const JobTitle = styled.h5`
   font-size: 1.15em;
 `;
 
-const Subtitle = styled.h3`
+export const Subtitle = styled.h3`
   font-size: 1.5em;
   text-align: center;
 `;
 
-const Link = styled.a`
+export const Link = styled.a`
   color: ${props => props.company ? '#D77A61' : 'black'};
   font-size: ${props => props.company ? '1.25em' : '1.15em'};
   font-weight: ${props => props.company ? 'bold' : '200'};

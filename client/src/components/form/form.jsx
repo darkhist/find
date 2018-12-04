@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
-import Results from './results/results';
+import Results, { Subtitle } from './results/results';
+import Pie from '../vis/pie';
 
-const Title = styled.h4`
+export const Title = styled.h4`
   font-style: italic;
   margin: 1em 0;
   text-align: center;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   margin: 0.25em 0.5em;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   background: #d77a61;
   border-radius: 45px;
   -webkit-border-radius: 45px;
@@ -97,6 +98,12 @@ export default class SearchForm extends Component {
             )}
           />
         </div>
+
+        <div className="pie-chart">
+          <Subtitle> Stats </Subtitle>
+          <Pie />
+        </div>
+
         <div className="results-container">
           <Results results={data} />
         </div>
