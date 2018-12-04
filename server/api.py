@@ -112,11 +112,7 @@ def parseData(data, keywords):
     return obj
 
 
-# Post request example:
-# {
-#     "email": "trump@cheeto.com",
-#     "body": "<h1> MixMax takes html here. This will be useful. </h1>"
-# }
+# Sends an email and returns the response code
 def email(email, body):
 
     reqHeaders = {
@@ -137,6 +133,40 @@ def email(email, body):
                       data=payload, headers=reqHeaders)
 
     return str(r.status_code) + " " + r.reason
+
+
+# Returns lattitude and longitude of a location
+# Uses MapQuest's API
+#
+# POST request EX:
+# {
+# 	"location": "Ames"
+# }
+@app.route('/location', methods=['POST'])
+def mapquest():
+    if not request.json:
+        abort(400)
+
+    req = request.get_json()
+
+    URL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + os.getenv('MAPQUEST_KEY')
+
+    reqHeaders = {
+        'content-type': 'application/json',
+    }
+
+    payload = json.dumps({
+        "location": req['location'],
+        "options": {
+            "thumbMaps": "false"
+        }
+    })
+
+    r = requests.post(URL, data=payload, headers=reqHeaders).json()
+
+    latLng = r['results'][0]['locations'][0]['latLng']
+
+    return json.dumps(latLng)
 
 
 # run the Flask app (which will launch a local webserver)
