@@ -44,14 +44,14 @@ export const Link = styled.a`
   }
 `;
 
-const Results = ({ results }) => {
-  if (results === undefined) {
+const Results = ({ jobs, keywords }) => {
+  if (jobs === undefined) {
     return (
       <div />
     );
   }
 
-  if (results.length === 0) {
+  if (jobs.length === 0) {
     return (
       <div>
         <Subtitle>
@@ -62,18 +62,18 @@ const Results = ({ results }) => {
     );
   }
 
-  const jobs = results.map(result => (
-    <Card key={result.id}>
+  const list = jobs.map(job => (
+    <Card key={job.id}>
       <Job>
-        <Link company href={result.company_url}>
-          {result.company}
+        <Link company href={job.company_url}>
+          {job.company}
         </Link>
 
         <JobTitle>
-          {result.title}
+          {job.title}
         </JobTitle>
 
-        <Link href={result.how_to_apply}>
+        <Link href={job.how_to_apply}>
           Apply
         </Link>
       </Job>
@@ -87,7 +87,7 @@ const Results = ({ results }) => {
         <Subtitle> Visualizations </Subtitle>
         <div className="pie-map">
           <div className="pie">
-            <Pie />
+            <Pie data={keywords} />
           </div>
           <div className="map">
             <Map />
@@ -99,7 +99,7 @@ const Results = ({ results }) => {
         <Subtitle> Results </Subtitle>
         <div className="jobs">
           <ul>
-            {jobs}
+            {list}
           </ul>
         </div>
       </div>
