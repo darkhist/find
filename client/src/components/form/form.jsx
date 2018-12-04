@@ -35,7 +35,7 @@ export const Button = styled.button`
 `;
 
 const request = async (formData) => {
-  const response = await fetch('https://mis407team4.herokuapp.com/search', {
+  const response = await fetch('http://localhost:8080/search', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -49,11 +49,11 @@ const request = async (formData) => {
 export default class SearchForm extends Component {
   constructor() {
     super();
-    this.state = { jobs: undefined, keywords: undefined };
+    this.state = { jobs: undefined, keywords: undefined, location: undefined };
   }
 
   render() {
-    const { jobs, keywords } = this.state;
+    const { jobs, keywords, location } = this.state;
 
     return (
       <div className="container">
@@ -67,7 +67,8 @@ export default class SearchForm extends Component {
             }}
             onSubmit={async (values) => {
               const results = await request(values);
-              this.setState({ jobs: results[0], keywords: results[1] });
+              this.setState({ jobs: results[0], keywords: results[1], location: results[2] });
+              console.log(this.state)
             }}
             render={() => (
               <Form autoComplete="off">
@@ -99,7 +100,7 @@ export default class SearchForm extends Component {
         </div>
 
         <div className="results-container">
-          <Results jobs={jobs} keywords={keywords} />
+          <Results jobs={jobs} keywords={keywords} location={location}/>
         </div>
       </div>
     );

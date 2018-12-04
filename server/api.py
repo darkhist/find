@@ -79,7 +79,7 @@ def search_jobs():
     # print(type(keywordFreq))
 
     # Return response to client
-    container = [data, keywordFreq]
+    container = [data, keywordFreq, getLocation(req['location'])]
     return json.dumps(container)
 
 
@@ -138,12 +138,12 @@ def email(email, body):
 # Returns lattitude and longitude of a location
 # Uses MapQuest's API
 #
-# POST request EX:
+# Returns:
 # {
-# 	"location": "Ames"
+#     "lat": 42.026802,
+#     "lng": -93.620181
 # }
-@app.route('/location', methods=['POST'])
-def mapquest():
+def getLocation(location):
     if not request.json:
         abort(400)
 
@@ -156,7 +156,7 @@ def mapquest():
     }
 
     payload = json.dumps({
-        "location": req['location'],
+        "location": location,
         "options": {
             "thumbMaps": "false"
         }
@@ -165,8 +165,8 @@ def mapquest():
     r = requests.post(URL, data=payload, headers=reqHeaders).json()
 
     latLng = r['results'][0]['locations'][0]['latLng']
-
-    return json.dumps(latLng)
+    
+    return latLng
 
 
 # run the Flask app (which will launch a local webserver)
