@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Pie from '../../vis/pie';
-import Map from '../../map/map'
+
+import Pie from '../../vis/pie/pie';
+import Map from '../../vis/map/map';
+
+import './results.scss';
 
 export const Card = styled.div`
   border: 1px solid black;
@@ -41,10 +44,6 @@ export const Link = styled.a`
   }
 `;
 
-export const PieChart = styled.div`
-  margin: 0 0 0 1em;
-`;
-
 const Results = ({ results }) => {
   if (results === undefined) {
     return (
@@ -82,20 +81,29 @@ const Results = ({ results }) => {
   ));
 
   return (
-    <div>
+    <div className="vis-results">
 
-      <div className="vis">
-          <Subtitle> Stats </Subtitle>
-          <PieChart>
+      <div className="visualizations">
+        <Subtitle> Visualizations </Subtitle>
+        <div className="pie-map">
+          <div className="pie">
             <Pie />
-          </PieChart>
-          <Map />
+          </div>
+          <div className="map">
+            <Map />
+          </div>
+        </div>
       </div>
 
-      <Subtitle> Results </Subtitle>
-      <ul>
-        {jobs}
-      </ul>
+      <div className="results">
+        <Subtitle> Results </Subtitle>
+        <div className="jobs">
+          <ul>
+            {jobs}
+          </ul>
+        </div>
+      </div>
+
     </div>
   );
 };
