@@ -35,6 +35,10 @@ export const Button = styled.button`
   }
 `;
 
+export const PieChart = styled.div`
+  margin: 0 0 0 1em;
+`;
+
 const request = async (formData) => {
   const response = await fetch('https://mis407team4.herokuapp.com/search', {
     method: 'POST',
@@ -57,7 +61,7 @@ export default class SearchForm extends Component {
     const { data } = this.state;
 
     return (
-      <div className="formik-results">
+      <div className="container">
         <div className="formik">
           <Title> Job Finding Made Easy </Title>
           <Formik
@@ -101,7 +105,9 @@ export default class SearchForm extends Component {
 
         <div className="pie-chart">
           <Subtitle> Stats </Subtitle>
-          <Pie />
+          <PieChart>
+            <Pie />
+          </PieChart>
         </div>
 
         <div className="results-container">
