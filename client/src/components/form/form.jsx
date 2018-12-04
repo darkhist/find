@@ -5,6 +5,8 @@ import { Formik, Form, Field } from 'formik';
 import Results, { Subtitle } from './results/results';
 import Pie from '../vis/pie';
 
+import Map from '../map/map'
+
 export const Title = styled.h4`
   font-style: italic;
   margin: 1em 0;
@@ -106,7 +108,12 @@ export default class SearchForm extends Component {
 
         <div className="results-container">
           <Results results={data} />
+          <Map />
         </div>
+
+        <div className="map-container">
+        </div>
+
       </div>
     );
   }
