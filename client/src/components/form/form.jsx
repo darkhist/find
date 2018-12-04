@@ -103,7 +103,7 @@ export default class SearchForm extends Component {
           />
         </div>
 
-        <div className="pie-chart">
+        <div className="vis">
           <Subtitle> Stats </Subtitle>
           <PieChart>
             <Pie />
