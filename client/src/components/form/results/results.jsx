@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Pie from '../../vis/pie';
+import Map from '../../map/map'
 
 export const Card = styled.div`
   border: 1px solid black;
@@ -37,6 +39,10 @@ export const Link = styled.a`
     text-decoration: underline;
     cursor: pointer;
   }
+`;
+
+export const PieChart = styled.div`
+  margin: 0 0 0 1em;
 `;
 
 const Results = ({ results }) => {
@@ -77,6 +83,15 @@ const Results = ({ results }) => {
 
   return (
     <div>
+
+      <div className="vis">
+          <Subtitle> Stats </Subtitle>
+          <PieChart>
+            <Pie />
+          </PieChart>
+          <Map />
+      </div>
+
       <Subtitle> Results </Subtitle>
       <ul>
         {jobs}

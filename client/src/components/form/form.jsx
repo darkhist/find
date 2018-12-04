@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
-import Results, { Subtitle } from './results/results';
-import Pie from '../vis/pie';
-
-import Map from '../map/map'
-
+import Results from './results/results';
 export const Title = styled.h4`
   font-style: italic;
   margin: 1em 0;
@@ -35,10 +31,6 @@ export const Button = styled.button`
   &:focus {
     outline: 0;
   }
-`;
-
-export const PieChart = styled.div`
-  margin: 0 0 0 1em;
 `;
 
 const request = async (formData) => {
@@ -103,14 +95,6 @@ export default class SearchForm extends Component {
               </Form>
             )}
           />
-        </div>
-
-        <div className="vis">
-          <Subtitle> Stats </Subtitle>
-          <PieChart>
-            <Pie />
-          </PieChart>
-          <Map />
         </div>
 
         <div className="results-container">
