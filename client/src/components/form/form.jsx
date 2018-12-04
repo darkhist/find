@@ -49,11 +49,11 @@ const request = async (formData) => {
 export default class SearchForm extends Component {
   constructor() {
     super();
-    this.state = { data: undefined };
+    this.state = { jobs: undefined, keywords: undefined };
   }
 
   render() {
-    const { data } = this.state;
+    const { jobs, keywords } = this.state;
 
     return (
       <div className="container">
@@ -67,7 +67,7 @@ export default class SearchForm extends Component {
             }}
             onSubmit={async (values) => {
               const results = await request(values);
-              this.setState({ data: results });
+              this.setState({ jobs: results[0], keywords: results[1] });
             }}
             render={() => (
               <Form autoComplete="off">
@@ -99,7 +99,7 @@ export default class SearchForm extends Component {
         </div>
 
         <div className="results-container">
-          <Results results={data} />
+          <Results jobs={jobs} keywords={keywords} />
         </div>
       </div>
     );

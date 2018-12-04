@@ -1,14 +1,17 @@
 import React from 'react';
 import { RadialChart } from 'react-vis';
 
-const myData = [{ angle: 1 }, { angle: 5 }, { angle: 2 }];
+const Pie = ({ data }) => {
+  console.log(data);
 
-const Pie = () => (
-  <RadialChart
-    data={myData}
-    width={325}
-    height={325}
-  />
-);
+  return (
+    <RadialChart
+      data={data}
+      width={325}
+      height={325}
+      showLabels
+    />
+  );
+};
 
 export default Pie;

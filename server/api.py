@@ -56,27 +56,27 @@ def search_jobs():
     # Send GET request to Github Jobs API
     # Save response as response object
     data = requests.get(url=URL).json()
-    
+
     emailBody = ""
     count = 1
 
     # Cleanup
     for job in data:
 
-        emailBody += ("<br><br><hr><hr><hr><br><br><h1>Result #" + 
-                    str(count) + "</h1>" + job['description'])
+        emailBody += ("<br><br><hr><hr><hr><br><br><h1>Result #" +
+                      str(count) + "</h1>" + job['description'])
         count += 1
 
         job.update({'how_to_apply': cleanHowToApply(job['how_to_apply'])})
 
     # If email is provided, send email and print status to console
     if (req['email'] != ""):
-        print("Email sent to " + req['email'] + ": " + 
-            email(req['email'], emailBody))
-    
-    # Grabs data for pie chart 
+        print("Email sent to " + req['email'] + ": " +
+              email(req['email'], emailBody))
+
+    # Grabs data for pie chart
     keywordFreq = parseData(data, keywords)
-    #print(type(keywordFreq))
+    # print(type(keywordFreq))
 
     # Return response to client
     container = [data, keywordFreq]
@@ -85,7 +85,7 @@ def search_jobs():
 
 # Takes our data object and our keyword string
 # Returns object containing keyword frequency
-# 
+
 # Input:    keyords: "java, aws", location: "New York"
 # Returns:  [{'angle': 3, 'label': 'java'}, {'angle': 1, 'label': 'aws'}]
 def parseData(data, keywords):
@@ -101,7 +101,8 @@ def parseData(data, keywords):
         for key in keywordCount:
             # Splitting on whitespace doesn't work because a lot of keywords are next to HTML tags
             # So we split on the word itself and take the length of the array minus one
-            keywordCount[key] += len(job['description'].upper().split(key.upper())) - 1
+            keywordCount[key] += len(
+                job['description'].upper().split(key.upper())) - 1
 
     # Create object for react-vis input
     obj = []
@@ -111,11 +112,7 @@ def parseData(data, keywords):
     return obj
 
 
-# Post request example:
-# {
-#     "email": "trump@cheeto.com",
-#     "body": "<h1> MixMax takes html here. This will be useful. </h1>"
-# }
+# Sends an email and returns the response code
 def email(email, body):
 
     reqHeaders = {
@@ -136,6 +133,40 @@ def email(email, body):
                       data=payload, headers=reqHeaders)
 
     return str(r.status_code) + " " + r.reason
+
+
+# Returns lattitude and longitude of a location
+# Uses MapQuest's API
+#
+# POST request EX:
+# {
+# 	"location": "Ames"
+# }
+@app.route('/location', methods=['POST'])
+def mapquest():
+    if not request.json:
+        abort(400)
+
+    req = request.get_json()
+
+    URL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + os.getenv('MAPQUEST_KEY')
+
+    reqHeaders = {
+        'content-type': 'application/json',
+    }
+
+    payload = json.dumps({
+        "location": req['location'],
+        "options": {
+            "thumbMaps": "false"
+        }
+    })
+
+    r = requests.post(URL, data=payload, headers=reqHeaders).json()
+
+    latLng = r['results'][0]['locations'][0]['latLng']
+
+    return json.dumps(latLng)
 
 
 # run the Flask app (which will launch a local webserver)
