@@ -1,4 +1,6 @@
-import json, requests, os
+import json
+import requests
+import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
@@ -7,7 +9,7 @@ from flask_cors import CORS
 
 # Create .env file path.
 dotenv_path = join(dirname(__file__), '.env')
- 
+
 # Load file from the path.
 load_dotenv(dotenv_path)
 
@@ -19,6 +21,11 @@ def cleanHowToApply(html):
     soup = BeautifulSoup(html, features="html.parser")
     for link in soup.find_all('a', href=True):
         return link['href']
+
+
+@app.route('/', methods=['POST', 'GET'])
+def test():
+    return "Welcome to the API 🎉"
 
 
 @app.route('/search', methods=['POST'])
@@ -91,13 +98,11 @@ def email(email, body):
         }
     })
 
-    r = requests.post("https://api.mixmax.com/v1/send/", data=payload, headers=reqHeaders)
+    r = requests.post("https://api.mixmax.com/v1/send/",
+                      data=payload, headers=reqHeaders)
 
     return str(r.status_code) + " " + r.reason
 
-@app.route('/test', methods=['POST', 'GET'])
-def test():
-    return "<p> Connected! </p>"
 
 # run the Flask app (which will launch a local webserver)
 if __name__ == "__main__":

@@ -21,6 +21,7 @@
         "devDependencies": true
       }
     ],
+    "no-confusing-arrow": "off",
     "no-console": "off",
     "react/prop-types": "off",
     "quote-props": "off"
