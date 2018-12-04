@@ -110,14 +110,11 @@ export default class SearchForm extends Component {
           <PieChart>
             <Pie />
           </PieChart>
+          <Map />
         </div>
 
         <div className="results-container">
           <Results results={data} />
-          <Map />
-        </div>
-
-        <div className="map-container">
         </div>
 
       </div>
