@@ -56,26 +56,33 @@ def search_jobs():
     # Send GET request to Github Jobs API
     # Save response as response object
     data = requests.get(url=URL).json()
+    
+    emailBody = ""
+    count = 1
 
     # Cleanup
     for job in data:
+
+        emailBody += ("<br><br><hr><hr><hr><br><br><h1>Result #" + 
+                    str(count) + "</h1>" + job['description'])
+        count += 1
+
         job.update({'how_to_apply': cleanHowToApply(job['how_to_apply'])})
+
+# If email is provided, send email
+    if (req['email'] != ""):
+        print("Email sent to " + req['email'] + ": " + 
+            email(req['email'], emailBody))
 
     # Return response to client
     return json.dumps(data)
 
-
-@app.route('/email', methods=['POST'])
 # Post request example:
 # {
 #     "email": "trump@cheeto.com",
 #     "body": "<h1> MixMax takes html here. This will be useful. </h1>"
 # }
-def mixMax():
-    if not request.json:
-        abort(400)
-
-    req = request.get_json()
+def email(email, body):
 
     reqHeaders = {
         'content-type': 'application/json',
@@ -84,10 +91,10 @@ def mixMax():
 
     payload = json.dumps({
         "message": {
-            "to": req['email'],
+            "to": email,
             "from": 'Find@Job.com',
             "subject": "JobFind Results!",
-            "html": req['body']
+            "html": body
         }
     })
 
