@@ -2,6 +2,8 @@ import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import { compose, withProps } from 'recompose';
 
+import './map.scss';
+
 const Map = compose(
   withProps({
     googleMapURL:

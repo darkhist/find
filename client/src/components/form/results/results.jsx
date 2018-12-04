@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Pie from '../../vis/pie/pie';
 import Map from '../../vis/map/map';
 
+import './results.scss';
+
 export const Card = styled.div`
   border: 1px solid black;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 
@@ -40,10 +42,6 @@ export const Link = styled.a`
     text-decoration: underline;
     cursor: pointer;
   }
-`;
-
-export const PieChart = styled.div`
-  margin: 0 0 0 1em;
 `;
 
 const Results = ({ results }) => {
@@ -83,21 +81,34 @@ const Results = ({ results }) => {
   ));
 
   return (
-    <div>
+    <div className="vis-results">
+
       <div className="vis">
-        <Subtitle>
-          Stats
-        </Subtitle>
-        <PieChart>
-          <Pie />
-        </PieChart>
-        <Map />
+        <div className="subtitle">
+          <Subtitle> Visualizations </Subtitle>
+        </div>
+
+        <div className="pie-map">
+          <div className="pie">
+            <Pie />
+          </div>
+          <div className="map">
+            <Map />
+          </div>
+        </div>
       </div>
 
-      <Subtitle> Results </Subtitle>
-      <ul>
-        {jobs}
-      </ul>
+      <div className="results">
+        <div className="subtitle">
+          <Subtitle> Results </Subtitle>
+        </div>
+
+        <div className="jobs">
+          <ul>
+            {jobs}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

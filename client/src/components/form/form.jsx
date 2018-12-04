@@ -98,10 +98,9 @@ export default class SearchForm extends Component {
           />
         </div>
 
-        <div className="results">
+        <div className="results-container">
           <Results results={data} />
         </div>
-
       </div>
     );
   }
