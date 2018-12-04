@@ -69,13 +69,47 @@ def search_jobs():
 
         job.update({'how_to_apply': cleanHowToApply(job['how_to_apply'])})
 
-# If email is provided, send email
+    # If email is provided, send email and print status to console
     if (req['email'] != ""):
         print("Email sent to " + req['email'] + ": " + 
             email(req['email'], emailBody))
+    
+    # Grabs data for pie chart 
+    keywordFreq = parseData(data, keywords)
+    #print(type(keywordFreq))
 
     # Return response to client
-    return json.dumps(data)
+    container = [data, keywordFreq]
+    return json.dumps(container)
+
+
+# Takes our data object and our keyword string
+# Returns object containing keyword frequency
+# 
+# Input:    keyords: "java, aws", location: "New York"
+# Returns:  [{'angle': 3, 'label': 'java'}, {'angle': 1, 'label': 'aws'}]
+def parseData(data, keywords):
+    keywords = keywords.split(', ')
+    keywordCount = {}
+
+    # Initialize dictionary
+    for key in keywords:
+        keywordCount[key] = 0
+
+    # Count keyword frequency
+    for job in data:
+        for key in keywordCount:
+            # Splitting on whitespace doesn't work because a lot of keywords are next to HTML tags
+            # So we split on the word itself and take the length of the array minus one
+            keywordCount[key] += len(job['description'].upper().split(key.upper())) - 1
+
+    # Create object for react-vis input
+    obj = []
+    for key in keywordCount:
+        obj.append({"angle": keywordCount[key], "label": key})
+
+    return obj
+
 
 # Post request example:
 # {
