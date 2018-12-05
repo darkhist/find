@@ -149,7 +149,8 @@ def getLocation(location):
 
     req = request.get_json()
 
-    URL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + os.getenv('MAPQUEST_KEY')
+    URL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + \
+        os.getenv('MAPQUEST_KEY')
 
     reqHeaders = {
         'content-type': 'application/json',
@@ -165,7 +166,7 @@ def getLocation(location):
     r = requests.post(URL, data=payload, headers=reqHeaders).json()
 
     latLng = r['results'][0]['locations'][0]['latLng']
-    
+
     return latLng
 
 
