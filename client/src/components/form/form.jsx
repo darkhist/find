@@ -73,6 +73,7 @@ export default class SearchForm extends Component {
               <Form autoComplete="off">
                 <Label> Job Description </Label>
                 <Field
+                  label="keywords"
                   name="keywords"
                   type="text"
                   placeholder="Python, JavaScript, etc"
@@ -80,6 +81,7 @@ export default class SearchForm extends Component {
                 <br />
                 <Label> Location </Label>
                 <Field
+                  label="location"
                   name="location"
                   type="text"
                   placeholder="New York, 11211"
@@ -87,6 +89,7 @@ export default class SearchForm extends Component {
                 <br />
                 <Label> Email </Label>
                 <Field
+                  label="email"
                   name="email"
                   type="email"
                   placeholder="jane.doe@gmail.com"
