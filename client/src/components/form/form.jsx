@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
@@ -19,7 +21,7 @@ export const Button = styled.button`
   border-radius: 45px;
   -webkit-border-radius: 45px;
   -moz-border-radius: 45px;
-  color: white;
+  color: black;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em;
@@ -71,25 +73,38 @@ export default class SearchForm extends Component {
             }}
             render={() => (
               <Form autoComplete="off">
-                <Label> Job Description </Label>
+                <Label>
+                  <label htmlFor="keywords">
+                    Job Description
+                  </label>
+                </Label>
+
                 <Field
-                  label="keywords"
+                  id="keywords"
                   name="keywords"
                   type="text"
                   placeholder="Python, JavaScript, etc"
                 />
                 <br />
-                <Label> Location </Label>
+                <Label>
+                  <label htmlFor="location">
+                    Location
+                  </label>
+                </Label>
                 <Field
-                  label="location"
+                  id="location"
                   name="location"
                   type="text"
                   placeholder="New York, 11211"
                 />
                 <br />
-                <Label> Email </Label>
+                <Label>
+                  <label htmlFor="email">
+                    Email
+                  </label>
+                </Label>
                 <Field
-                  label="email"
+                  id="email"
                   name="email"
                   type="email"
                   placeholder="jane.doe@gmail.com"
