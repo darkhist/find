@@ -35,7 +35,7 @@ export const Button = styled.button`
 `;
 
 const request = async (formData) => {
-  const response = await fetch('http://localhost:8080/search', {
+  const response = await fetch('https://mis407team4.herokuapp.com/search', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
