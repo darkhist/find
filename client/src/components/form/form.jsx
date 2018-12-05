@@ -68,7 +68,6 @@ export default class SearchForm extends Component {
             onSubmit={async (values) => {
               const results = await request(values);
               this.setState({ jobs: results[0], keywords: results[1], location: results[2] });
-              console.log(this.state);
             }}
             render={() => (
               <Form autoComplete="off">

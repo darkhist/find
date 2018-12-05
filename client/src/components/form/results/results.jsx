@@ -44,7 +44,7 @@ export const Link = styled.a`
   }
 `;
 
-const Results = ({ jobs, keywords }) => {
+const Results = ({ jobs, keywords, location }) => {
   if (jobs === undefined) {
     return (
       <div />
@@ -90,7 +90,7 @@ const Results = ({ jobs, keywords }) => {
             <Pie data={keywords} />
           </div>
           <div className="map">
-            <Map />
+            <Map location={location} />
           </div>
         </div>
       </div>
