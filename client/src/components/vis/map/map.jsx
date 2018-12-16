@@ -14,7 +14,7 @@ const Map = ({ location }) => {
   return (
     <div>
       <MapComponent
-        loadingElement={<div className="loading" style={{ height: '100%' }} />}
+        loadingElement={<div className="loading" />}
         containerElement={<div className="container-elt" />}
         mapElement={<div className="map" />}
       />
