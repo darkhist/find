@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
-import Results from './results/results';
+import Results from '../results/results';
 
 export const Title = styled.h2`
   font-size: 1em;

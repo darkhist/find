@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Pie, { VisTitle } from '../../vis/pie/pie';
-import Map from '../../vis/map/map';
+import Pie, { VisTitle } from '../vis/pie/pie';
+import Map from '../vis/map/map';
 
 export const VisResults = styled.div`
   display: grid;
