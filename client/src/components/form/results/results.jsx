@@ -1,33 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Pie from '../../vis/pie/pie';
+import Pie, { VisTitle } from '../../vis/pie/pie';
 import Map from '../../vis/map/map';
 
 export const VisResults = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 450px);
+  grid-template-rows: repeat(2, 850px);
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 450px);
+  }
 `;
 
-export const PieMap = styled.div`
+export const Vis = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 2em;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const PieChart = styled.div`
   margin: auto;
 `;
 
-export const ResultsContainer = styled.div`
-  margin: 4em 0 0 0;
-`;
-
 export const Subtitle = styled.h3`
   font-size: 1.5em;
   font-weight: 200;
   text-align: center;
+  margin: 0;
 `;
 
 export const Card = styled.div`
@@ -111,23 +120,24 @@ const Results = ({ jobs, keywords, location }) => {
     <VisResults>
       <div className="visualizations">
         <Subtitle> Visualizations </Subtitle>
-        <PieMap>
+        <Vis>
           <PieChart>
             <Pie data={keywords} />
           </PieChart>
           <div className="map">
+            <VisTitle> Map </VisTitle>
             <Map location={location} />
           </div>
-        </PieMap>
+        </Vis>
       </div>
-      <ResultsContainer>
+      <div className="resultList">
         <Subtitle> Results </Subtitle>
         <div className="jobs">
           <List>
             {list}
           </List>
         </div>
-      </ResultsContainer>
+      </div>
     </VisResults>
   );
 };

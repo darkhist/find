@@ -15,8 +15,8 @@ const Map = ({ location }) => {
     <div>
       <MapComponent
         loadingElement={<div className="loading" />}
-        containerElement={<div className="container-elt" />}
         mapElement={<div className="map" />}
+        containerElement={<div className="container-elt" />}
       />
     </div>
   );

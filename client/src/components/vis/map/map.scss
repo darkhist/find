@@ -1,8 +1,11 @@
 .loading, .map {
-  height: 100%;
+  height: 85%;
+  width: 250px;
+  margin: 0 auto;
 }
 
-.container-elt {
-  height: auto;
-  width: 550px;
+@media screen and (min-width: 768px) {
+  .loading, .map {
+    width: 400px;
+  }
 }

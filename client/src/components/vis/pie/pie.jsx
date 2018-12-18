@@ -2,7 +2,7 @@ import React from 'react';
 import { RadialChart } from 'react-vis';
 import styled from 'styled-components';
 
-export const ChartTitle = styled.h4`
+export const VisTitle = styled.h4`
   font-size: 1.15em;
   font-weight: 200;
   text-align: center;
@@ -10,10 +10,7 @@ export const ChartTitle = styled.h4`
 
 const Pie = ({ data }) => (
   <div className="pie-container">
-    <ChartTitle>
-      Keyword Relevance
-    </ChartTitle>
-
+    <VisTitle> Keyword Relevance </VisTitle>
     <RadialChart
       data={data}
       width={325}

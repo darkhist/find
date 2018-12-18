@@ -27,9 +27,9 @@ export const Button = styled.button`
   -webkit-border-radius: 45px;
   -moz-border-radius: 45px;
   color: black;
-  font-size: 1em;
+  font-size: .75em;
   margin: 2.5em;
-  padding: 0.25em;
+  padding: .5em;
   width: 5em;
 
   &:hover {
@@ -38,6 +38,11 @@ export const Button = styled.button`
 
   &:focus {
     outline: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 1em;
+    padding: .25em;
   }
 `;
 
