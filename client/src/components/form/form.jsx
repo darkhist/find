@@ -8,12 +8,17 @@ export const Title = styled.h2`
   font-size: 1em;
   font-style: italic;
   font-weight: 200;
-  margin: 1em 0;
+  margin: .5em 0 2em 0;
   text-align: center;
 `;
 
 export const Label = styled.label`
-  margin: 0.25em 0.5em;
+  font-size: .85em;
+  padding: 0 1em;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1em;
+  }
 `;
 
 export const Button = styled.button`
@@ -23,7 +28,7 @@ export const Button = styled.button`
   -moz-border-radius: 45px;
   color: black;
   font-size: 1em;
-  margin: 1em;
+  margin: 2.5em;
   padding: 0.25em;
   width: 5em;
 

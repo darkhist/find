@@ -10,8 +10,8 @@ html {
 }
 
 body {
-  margin: 0;
   background-color: #EFF1F3;
+  margin: 0;
 }
 
 form {
@@ -23,9 +23,41 @@ form {
     border-bottom: 1px solid #D77A61;
     background: transparent;
     font-size: 1em;
-    padding: .25em .25em;
     margin: 1em 0;
     text-align: center;
-    width: 10em;
+    width: 7.25em;
+
+    @media screen and (min-width: 768px) {
+      width: 10em;
+    }
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+   font-size: .75em;
+
+   @media screen and (min-width: 768px) {
+      font-size: 1em;
+    }
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+   font-size: .75em;
+
+   @media screen and (min-width: 768px) {
+      font-size: 1em;
+    } 
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+   font-size: .75em;
+
+   @media screen and (min-width: 768px) {
+     font-size: 1em;
+    } 
+  }
+  :-moz-placeholder { /* Firefox 18- */
+   font-size: .75em;
+
+   @media screen and (min-width: 768px) {
+      font-size: 1em;
+    } 
   }
 }
