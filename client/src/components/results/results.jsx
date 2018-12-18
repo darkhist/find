@@ -4,6 +4,13 @@ import styled from 'styled-components';
 import Pie, { VisTitle } from '../vis/pie/pie';
 import Map from '../vis/map/map';
 
+export const Subtitle = styled.h3`
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+  margin: 0;
+`;
+
 export const VisResults = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -32,13 +39,6 @@ export const PieChart = styled.div`
   margin: auto;
 `;
 
-export const Subtitle = styled.h3`
-  font-size: 1.5em;
-  font-weight: 200;
-  text-align: center;
-  margin: 0;
-`;
-
 export const Card = styled.div`
   border: 1px solid black;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 
@@ -55,28 +55,44 @@ export const Card = styled.div`
 export const List = styled.ul`
   list-style-type: none;
   margin: 0;
-  padding: 0em 3em;
+  padding: 0em .5em;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 2em;
+  }
 `;
 
 export const Job = styled.li`
-  padding: .5em;
+  padding: .25em;
+
+  @media screen and (min-width: 768px) {
+    padding: .5em;
+  }
 `;
 
 export const JobTitle = styled.h4`
-  font-size: 1.15em;
+  font-size: .85em;
   font-weight: 200;
   margin: 0;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.25em;
+  }
 `;
 
 export const Link = styled.a`
   color: ${props => props.company ? '#D77A61' : 'black'};
-  font-size: ${props => props.company ? '1.25em' : '1.15em'};
+  font-size: ${props => props.company ? '1em' : '.85em'};
   font-weight: ${props => props.company ? 'bold' : '200'};
   text-decoration-line: none;
 
   &:hover {
     text-decoration: underline;
     cursor: pointer;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: ${props => props.company ? '1.25em' : '1em'};
   }
 `;
 
