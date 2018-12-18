@@ -1,13 +1,13 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
 import Results from './results/results';
 
-export const Title = styled.h4`
+export const Title = styled.h2`
+  font-size: 1em;
   font-style: italic;
+  font-weight: 200;
   margin: 1em 0;
   text-align: center;
 `;
@@ -73,35 +73,28 @@ export default class SearchForm extends Component {
             }}
             render={() => (
               <Form autoComplete="off">
-                <Label>
-                  <label htmlFor="keywords">
-                    Job Description
-                  </label>
+                <Label htmlFor="keywords">
+                  Job Description
                 </Label>
-
                 <Field
                   id="keywords"
                   name="keywords"
                   type="text"
-                  placeholder="Python, JavaScript, etc"
+                  placeholder="Python, JavaScript"
                 />
                 <br />
-                <Label>
-                  <label htmlFor="location">
-                    Location
-                  </label>
+                <Label htmlFor="location">
+                  Location
                 </Label>
                 <Field
                   id="location"
                   name="location"
                   type="text"
-                  placeholder="New York, 11211"
+                  placeholder="San Fransisco"
                 />
                 <br />
-                <Label>
-                  <label htmlFor="email">
-                    Email
-                  </label>
+                <Label htmlFor="email">
+                  Email
                 </Label>
                 <Field
                   id="email"

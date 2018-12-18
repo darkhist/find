@@ -16,32 +16,16 @@ body {
 
 form {
   text-align: center;
-}
 
-input {
-  border: 0;
-  outline: 0;
-  border-bottom: 1px solid #D77A61;
-  background: transparent;
-  font-size: 1em;
-  padding: .25em .25em;
-  margin: 1em 0;
-  text-align: center;
-  width: 12.5em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 200;
-  margin: 0;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0em 3em;
+  input {
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #D77A61;
+    background: transparent;
+    font-size: 1em;
+    padding: .25em .25em;
+    margin: 1em 0;
+    text-align: center;
+    width: 10em;
+  }
 }

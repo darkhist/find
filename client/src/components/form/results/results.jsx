@@ -4,7 +4,31 @@ import styled from 'styled-components';
 import Pie from '../../vis/pie/pie';
 import Map from '../../vis/map/map';
 
-import './results.scss';
+export const VisResults = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 450px);
+`;
+
+export const PieMap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 2em;
+`;
+
+export const PieChart = styled.div`
+  margin: auto;
+`;
+
+export const ResultsContainer = styled.div`
+  margin: 4em 0 0 0;
+`;
+
+export const Subtitle = styled.h3`
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+`;
 
 export const Card = styled.div`
   border: 1px solid black;
@@ -19,17 +43,20 @@ export const Card = styled.div`
   }
 `;
 
+export const List = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0em 3em;
+`;
+
 export const Job = styled.li`
   padding: .5em;
 `;
 
-export const JobTitle = styled.h5`
+export const JobTitle = styled.h4`
   font-size: 1.15em;
-`;
-
-export const Subtitle = styled.h3`
-  font-size: 1.5em;
-  text-align: center;
+  font-weight: 200;
+  margin: 0;
 `;
 
 export const Link = styled.a`
@@ -81,30 +108,27 @@ const Results = ({ jobs, keywords, location }) => {
   ));
 
   return (
-    <div className="vis-results">
-
+    <VisResults>
       <div className="visualizations">
         <Subtitle> Visualizations </Subtitle>
-        <div className="pie-map">
-          <div className="pie">
+        <PieMap>
+          <PieChart>
             <Pie data={keywords} />
-          </div>
+          </PieChart>
           <div className="map">
             <Map location={location} />
           </div>
-        </div>
+        </PieMap>
       </div>
-
-      <div className="results">
+      <ResultsContainer>
         <Subtitle> Results </Subtitle>
         <div className="jobs">
-          <ul>
+          <List>
             {list}
-          </ul>
+          </List>
         </div>
-      </div>
-
-    </div>
+      </ResultsContainer>
+    </VisResults>
   );
 };
 

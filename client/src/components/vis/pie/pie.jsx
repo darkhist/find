@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const ChartTitle = styled.h4`
   font-size: 1.15em;
+  font-weight: 200;
   text-align: center;
 `;
 
